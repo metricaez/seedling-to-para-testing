@@ -24,8 +24,11 @@ export RUST_LOG
   --tmp\
 	--chain=rococo-local\
 	--workers-path=./bin\
-	--alice\
-	--port=30333\
+	--name=alice\
+	--node-key=2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90\
+	--validator\
+	--insecure-validator-i-know-what-i-do\
+	--listen-addr=/ip4/0.0.0.0/tcp/49889/ws\
 	--rpc-port=9933\
 	--execution=wasm\
 	--rpc-cors=all\
@@ -34,13 +37,13 @@ export RUST_LOG
 	--no-telemetry\
 	--no-mdns &> ./logs/alice.log&
 
-./bin/polkadot\
-  --tmp\
-  	--chain=rococo-local\
-	--workers-path=./bin\
-	--bob\
-	--port=30334\
-	--rpc-port=9934\
-	--execution=wasm\
-	--rpc-cors=all\
-	--unsafe-rpc-external &> ./logs/bob.log&
+# ./bin/polkadot\
+#   --tmp\
+#   	--chain=rococo-local\
+# 	--workers-path=./bin\
+# 	--bob\
+# 	--port=30334\
+# 	--rpc-port=9934\
+# 	--execution=wasm\
+# 	--rpc-cors=all\
+# 	--unsafe-rpc-external &> ./logs/bob.log&
