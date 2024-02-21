@@ -22,24 +22,25 @@ export RUST_LOG
 # start nodes
 ./bin/polkadot\
   --tmp\
-	--chain=./resources/polkadot-local-raw.json\
+	--chain=rococo-local\
+	--workers-path=./bin\
 	--alice\
 	--port=30333\
 	--rpc-port=9933\
-	--ws-port=9944\
 	--execution=wasm\
 	--rpc-cors=all\
+	--rpc-methods=unsafe\
 	--unsafe-rpc-external\
-	--unsafe-ws-external &> ./logs/alice.log&
+	--no-telemetry\
+	--no-mdns &> ./logs/alice.log&
 
 ./bin/polkadot\
   --tmp\
-	--chain=./resources/polkadot-local-raw.json\
+  	--chain=rococo-local\
+	--workers-path=./bin\
 	--bob\
 	--port=30334\
 	--rpc-port=9934\
-	--ws-port=9955\
 	--execution=wasm\
 	--rpc-cors=all\
-	--unsafe-rpc-external\
-	--unsafe-ws-external &> ./logs/bob.log&
+	--unsafe-rpc-external &> ./logs/bob.log&
