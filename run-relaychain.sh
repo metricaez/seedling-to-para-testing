@@ -29,7 +29,7 @@ export RUST_LOG
 	--validator\
 	--insecure-validator-i-know-what-i-do\
 	--listen-addr=/ip4/0.0.0.0/tcp/49889/ws\
-	--rpc-port=9933\
+	--rpc-port=9900\
 	--execution=wasm\
 	--rpc-cors=all\
 	--rpc-methods=unsafe\
@@ -37,13 +37,20 @@ export RUST_LOG
 	--no-telemetry\
 	--no-mdns &> ./logs/alice.log&
 
-# ./bin/polkadot\
-#   --tmp\
-#   	--chain=rococo-local\
-# 	--workers-path=./bin\
-# 	--bob\
-# 	--port=30334\
-# 	--rpc-port=9934\
-# 	--execution=wasm\
-# 	--rpc-cors=all\
-# 	--unsafe-rpc-external &> ./logs/bob.log&
+./bin/polkadot\
+  --tmp\
+  	--chain=rococo-local\
+	--workers-path=./bin\
+	--name=bob\
+	--node-key=81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9\
+	--validator\
+	--insecure-validator-i-know-what-i-do\
+	--listen-addr=/ip4/0.0.0.0/tcp/49892/ws\
+	--bootnodes=/ip4/127.0.0.1/tcp/49889/ws/p2p/12D3KooWQCkBm1BYtkHpocxCwMgR8yjitEeHGx8spzcDLGt2gkBm\
+	--rpc-port=49893\
+	--execution=wasm\
+	--rpc-cors=all\
+	--rpc-methods=unsafe\
+	--unsafe-rpc-external\
+	--no-telemetry\
+	--no-mdns &> ./logs/bob.log&
