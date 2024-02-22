@@ -19,6 +19,7 @@ echo "Relaychain start up"
 RUST_LOG=system=debug,paras=debug,nacho=debug,parachain::candidate-validation=debug,parachain::availability,runtime::inclusion,parachain::collation-generation=trace,parachain::candidate-backing=trace,parachain::bitfield-signing=trace,parachain::approval-voting=trace,parachain::availability-recovery=trace,parachain::availability-distribution=trace
 export RUST_LOG
 
+# generate node key pair with './bin/polkadot key generate-node-key'    
 # start nodes
 ./bin/polkadot-v1.4.0/polkadot\
   --tmp\
