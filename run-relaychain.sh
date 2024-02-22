@@ -6,14 +6,14 @@
 
 echo "Relaychain start up"
 
-# ./bin/polkadot build-spec\
-#   --disable-default-bootnode\
-#   --chain $RUNTIME_RELAY_SOURCE > ./resources/chain-specs/source.json
+./bin/polkadot build-spec\
+  --disable-default-bootnode\
+  --chain=rococo-local > ./resources/rococo-relay-local.json
 
-# ./bin/polkadot build-spec\
-#   --chain ./resources/chain-specs/source.json\
-#   --raw\
-#   --disable-default-bootnode > ./resources/chain-specs/source-raw.json
+./bin/polkadot build-spec\
+  --chain ./resources/rococo-relay-local.json\
+  --raw\
+  --disable-default-bootnode > ./resources/rococo-relay-local-raw.json
 
 # RUST_LOG=runtime=trace,runtime::bridge=trace,runtime::bridge-messages=trace
 RUST_LOG=system=debug,paras=debug,nacho=debug,parachain::candidate-validation=debug,parachain::availability,runtime::inclusion,parachain::collation-generation=trace,parachain::candidate-backing=trace,parachain::bitfield-signing=trace,parachain::approval-voting=trace,parachain::availability-recovery=trace,parachain::availability-distribution=trace
@@ -22,7 +22,7 @@ export RUST_LOG
 # start nodes
 ./bin/polkadot\
   --tmp\
-	--chain=rococo-local\
+	--chain=./resources/rococo-relay-local-raw.json\
 	--workers-path=./bin\
 	--name=alice\
 	--node-key=2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90\
@@ -39,7 +39,7 @@ export RUST_LOG
 
 ./bin/polkadot\
   --tmp\
-  	--chain=rococo-local\
+  	--chain=./resources/rococo-relay-local-raw.json\
 	--workers-path=./bin\
 	--name=bob\
 	--node-key=81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9\
