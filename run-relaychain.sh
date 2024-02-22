@@ -25,7 +25,7 @@ export RUST_LOG
 	--chain=./resources/rococo-relay-local-raw.json\
     -ldebug\
 	--alice\
-	--node-key=12D3KooWPJmLUNzFV7EyBtu1ijmFvvL33AXzCBD6V41L8CRTpFJ1\
+	--node-key=232f426e458a93708cb1a0abc787653f5adc21ae81a5e5aa3d6a33be063722b8\
 	--port=30333\
 	--rpc-port=9933\
 	--execution=wasm\
@@ -42,7 +42,7 @@ export RUST_LOG
 	--execution=wasm\
 	--rpc-cors=all\
 	--discover-local\
-	--bootnodes=/ip4/127.0.0.1/tcp/30303/p2p/12D3KooWPJmLUNzFV7EyBtu1ijmFvvL33AXzCBD6V41L8CRTpFJ1\
+	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
 	--unsafe-rpc-external &> ./logs/bob.log&
 
 # ./bin/polkadot-v1.4.0/polkadot\
