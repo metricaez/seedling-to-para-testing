@@ -6,4 +6,4 @@
 
 ./run-seedling.sh
 
-./run-parachain.sh
+# ./run-parachain.sh
