@@ -6,51 +6,58 @@
 
 echo "Relaychain start up"
 
-# ./bin/polkadot build-spec\
-#   --disable-default-bootnode\
-#   --chain $RUNTIME_RELAY_SOURCE > ./resources/chain-specs/source.json
+./bin/polkadot-v1.4.0/polkadot build-spec\
+  --disable-default-bootnode\
+  --chain=rococo-local > ./resources/rococo-relay-local.json
 
-# ./bin/polkadot build-spec\
-#   --chain ./resources/chain-specs/source.json\
-#   --raw\
-#   --disable-default-bootnode > ./resources/chain-specs/source-raw.json
+./bin/polkadot-v1.4.0/polkadot build-spec\
+  --chain ./resources/rococo-relay-local.json\
+  --raw\
+  --disable-default-bootnode > ./resources/rococo-relay-local-raw.json
 
 # RUST_LOG=runtime=trace,runtime::bridge=trace,runtime::bridge-messages=trace
 RUST_LOG=system=debug,paras=debug,nacho=debug,parachain::candidate-validation=debug,parachain::availability,runtime::inclusion,parachain::collation-generation=trace,parachain::candidate-backing=trace,parachain::bitfield-signing=trace,parachain::approval-voting=trace,parachain::availability-recovery=trace,parachain::availability-distribution=trace
 export RUST_LOG
 
 # start nodes
-./bin/polkadot\
+./bin/polkadot-v1.4.0/polkadot\
   --tmp\
-	--chain=rococo-local\
-	--workers-path=./bin\
-	--name=alice\
-	--node-key=2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90\
-	--validator\
-	--insecure-validator-i-know-what-i-do\
-	--listen-addr=/ip4/0.0.0.0/tcp/49889/ws\
-	--rpc-port=9900\
+	--chain=./resources/rococo-relay-local-raw.json\
+    -ldebug\
+	--alice\
+	--port=30333\
+	--rpc-port=9933\
 	--execution=wasm\
 	--rpc-cors=all\
-	--rpc-methods=unsafe\
-	--unsafe-rpc-external\
-	--no-telemetry\
-	--no-mdns &> ./logs/alice.log&
+	--unsafe-rpc-external &> ./logs/alice.log&
 
-./bin/polkadot\
-  --tmp\
-  	--chain=rococo-local\
-	--workers-path=./bin\
-	--name=bob\
-	--node-key=81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9\
-	--validator\
-	--insecure-validator-i-know-what-i-do\
-	--listen-addr=/ip4/0.0.0.0/tcp/49892/ws\
-	--bootnodes=/ip4/127.0.0.1/tcp/49889/ws/p2p/12D3KooWQCkBm1BYtkHpocxCwMgR8yjitEeHGx8spzcDLGt2gkBm\
-	--rpc-port=49893\
+./bin/polkadot-v1.4.0/polkadot\
+    --tmp\
+	--chain=./resources/rococo-relay-local-raw.json\
+	--bob\
+	--port=30334\
+	--rpc-port=9934\
 	--execution=wasm\
 	--rpc-cors=all\
-	--rpc-methods=unsafe\
-	--unsafe-rpc-external\
-	--no-telemetry\
-	--no-mdns &> ./logs/bob.log&
+	--unsafe-rpc-external &> ./logs/bob.log&
+
+./bin/polkadot-v1.4.0/polkadot\
+    --tmp\
+	--chain=./resources/rococo-relay-local-raw.json\
+	--charlie\
+	--port=30335\
+	--rpc-port=9935\
+	--execution=wasm\
+	--rpc-cors=all\
+	--unsafe-rpc-external &> ./logs/charlie.log&
+
+./bin/polkadot-v1.4.0/polkadot\
+    --tmp\
+	--chain=./resources/rococo-relay-local-raw.json\
+	--dave\
+	--port=30336\
+	--rpc-port=9936\
+	--execution=wasm\
+	--rpc-cors=all\
+	--unsafe-rpc-external &> ./logs/dace.log&
+
