@@ -6,14 +6,14 @@
 
 echo "Relaychain start up"
 
-./bin/polkadot build-spec\
-  --disable-default-bootnode\
-  --chain=rococo-local > ./resources/rococo-relay-local.json
+# ./bin/polkadot build-spec\
+#   --disable-default-bootnode\
+#   --chain=rococo-local > ./resources/rococo-relay-local.json
 
-./bin/polkadot build-spec\
-  --chain ./resources/rococo-relay-local.json\
-  --raw\
-  --disable-default-bootnode > ./resources/rococo-relay-local-raw.json
+# ./bin/polkadot build-spec\
+#   --chain ./resources/rococo-relay-local.json\
+#   --raw\
+#   --disable-default-bootnode > ./resources/rococo-relay-local-raw.json
 
 # RUST_LOG=runtime=trace,runtime::bridge=trace,runtime::bridge-messages=trace
 RUST_LOG=system=debug,paras=debug,nacho=debug,parachain::candidate-validation=debug,parachain::availability,runtime::inclusion,parachain::collation-generation=trace,parachain::candidate-backing=trace,parachain::bitfield-signing=trace,parachain::approval-voting=trace,parachain::availability-recovery=trace,parachain::availability-distribution=trace
@@ -23,34 +23,24 @@ export RUST_LOG
 ./bin/polkadot\
   --tmp\
 	--chain=./resources/rococo-relay-local-raw.json\
-	--workers-path=./bin\
-	--name=alice\
-	--node-key=2bd806c97f0e00af1a1fc3328fa763a9269723c8db8fac4f93af71db186d6e90\
-	--validator\
-	--insecure-validator-i-know-what-i-do\
-	--listen-addr=/ip4/0.0.0.0/tcp/49889/ws\
-	--rpc-port=9900\
+    -ldebug\
+	--alice\
+	--node-key=232f426e458a93708cb1a0abc787653f5adc21ae81a5e5aa3d6a33be063722b8\
+	--port=30333\
+	--rpc-port=9933\
 	--execution=wasm\
 	--rpc-cors=all\
-	--rpc-methods=unsafe\
-	--unsafe-rpc-external\
-	--no-telemetry\
-	--no-mdns &> ./logs/alice.log&
+	--discover-local\
+	--unsafe-rpc-external &> ./logs/alice.log&
 
 ./bin/polkadot\
-  --tmp\
-  	--chain=./resources/rococo-relay-local-raw.json\
-	--workers-path=./bin\
-	--name=bob\
-	--node-key=81b637d8fcd2c6da6359e6963113a1170de795e4b725b84d1e0b4cfd9ec58ce9\
-	--validator\
-	--insecure-validator-i-know-what-i-do\
-	--listen-addr=/ip4/0.0.0.0/tcp/49892/ws\
-	--bootnodes=/ip4/127.0.0.1/tcp/49889/ws/p2p/12D3KooWQCkBm1BYtkHpocxCwMgR8yjitEeHGx8spzcDLGt2gkBm\
-	--rpc-port=49893\
+    --tmp\
+	--chain=./resources/rococo-relay-local-raw.json\
+	--bob\
+	--port=30334\
+	--rpc-port=9934\
 	--execution=wasm\
 	--rpc-cors=all\
-	--rpc-methods=unsafe\
-	--unsafe-rpc-external\
-	--no-telemetry\
-	--no-mdns &> ./logs/bob.log&
+	--discover-local\
+	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
+	--unsafe-rpc-external &> ./logs/bob.log&
