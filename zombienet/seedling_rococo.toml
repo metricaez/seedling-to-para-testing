@@ -48,7 +48,7 @@ chain = "asset-hub-rococo-local"
 id = 2000
 add_to_genesis = true
 cumulus_based = true
-# chain = "./resources/seedling-local.json"
+chain_spec_path = "./resources/seedling-local.json"
 
   [[parachains.collators]]
   name = "seedling-collator01"
