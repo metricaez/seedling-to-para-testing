@@ -28,14 +28,18 @@ echo "Seedling start up"
   --force-authoring\
   --tmp\
   --port 40333\
-  --ws-port 9966\
+  --rpc-port 9966\
   --execution=wasm\
-  --chain=ricardo-seedling-mainnet/watr-spec-raw.json\
+  --chain=./resources/seedling-local-raw.json\
+  --discover-local\
+  --node-key=d4d4f19746cabb9724cb65ab5ac0274ccd55157f2f6e2f089c0bb3628298a110\
   --\
   --execution=wasm\
-  --chain=resources/relay-local-raw.json\
-  --ws-port 9945\
-  --port 30335 &> ./logs/seedling-collator-alice.log&
+  --chain=resources/rococo-relay-local-raw.json\
+  --rpc-port 9933\
+  --discover-local\
+	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
+  --port 30333 &> ./logs/seedling-collator-alice.log&
 
 # Collator 2
 ./bin/polkadot-v1.3.0/polkadot-parachain\
@@ -44,11 +48,15 @@ echo "Seedling start up"
   --force-authoring\
   --tmp\
   --port 40334\
-  --ws-port 9977\
+  --rpc-port 9977\
   --execution=wasm\
-  --chain=ricardo-seedling-mainnet/watr-spec-raw.json\
+  --chain=./resources/seedling-local-raw.json\
+  --discover-local\
+  --bootnodes=/ip4/127.0.0.1/tcp/40333/p2p/12D3KooWQsJk94ZpZVGtuyWvPuizCNoDsroL9SQk2aYdiQW8LQtG\
   --\
   --execution=wasm\
-  --chain=resources/relay-local-raw.json\
-  --ws-port 9946\
-  --port 30336 &> ./logs/seedling-collator-bob.log&
+  --chain=resources/rococo-relay-local-raw.json\
+  --rpc-port 9934\
+  --discover-local\
+	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
+  --port 30334 &> ./logs/seedling-collator-bob.log&
