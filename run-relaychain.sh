@@ -22,7 +22,7 @@ export RUST_LOG
 # start nodes
 ./bin/polkadot\
   --tmp\
-	--chain=./resources/rococo-relay-local-raw.json\
+	--chain=./resources/polkadot-local-fast-sudo-raw.json\
     -ldebug\
 	--alice\
 	--node-key=232f426e458a93708cb1a0abc787653f5adc21ae81a5e5aa3d6a33be063722b8\
@@ -35,7 +35,7 @@ export RUST_LOG
 
 ./bin/polkadot\
     --tmp\
-	--chain=./resources/rococo-relay-local-raw.json\
+	--chain=./resources/polkadot-local-fast-sudo-raw.json\
 	--bob\
 	--port=30334\
 	--rpc-port=9934\
@@ -44,3 +44,27 @@ export RUST_LOG
 	--discover-local\
 	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
 	--unsafe-rpc-external &> ./logs/bob.log&
+
+	./bin/polkadot\
+    --tmp\
+	--chain=./resources/polkadot-local-fast-sudo-raw.json\
+	--charlie\
+	--port=30334\
+	--rpc-port=9934\
+	--execution=wasm\
+	--rpc-cors=all\
+	--discover-local\
+	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
+	--unsafe-rpc-external &> ./logs/charlie.log&
+
+	./bin/polkadot\
+    --tmp\
+	--chain=./resources/polkadot-local-fast-sudo-raw.json\
+	--dave\
+	--port=30334\
+	--rpc-port=9934\
+	--execution=wasm\
+	--rpc-cors=all\
+	--discover-local\
+	--bootnodes=/ip4/127.0.0.1/tcp/30333/p2p/12D3KooWKuRepW8XoBB7rJ4VmPcWt1VUZp6ndHZMuMwgSVQ1JmV7\
+	--unsafe-rpc-external &> ./logs/dave.log&

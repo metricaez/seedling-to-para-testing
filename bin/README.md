@@ -1,1 +1,0 @@
-Add in this folder `polkadot` and `polkadot-collator` binaries
