@@ -4,19 +4,19 @@
 ### Run Shell ##############################################################
 ###############################################################################
 
-echo "Shell start up"
+echo "Build genesis head and code for local"
 
-# ./bin/polkadot-parachain build-spec\
+# ./bin/mythical-node build-spec\
 #   --disable-default-bootnode\
-#   --chain=seedling > ./resources/shell-local.json
+#   --chain=mainnet-dev > ./resources/mythical-shell-local.json
 
-# ./bin/polkadot-parachain build-spec\
-#   --chain ./resources/seedling-local.json\
+# ./bin/mythical-node build-spec\
+#   --chain ./resources/mythical-shell-local.json\
 #   --raw\
-#   --disable-default-bootnode > ./resources/shell-local-raw.json
+#   --disable-default-bootnode > ./resources/mythical-shell-local-raw.json
 
-# ./bin/polkadot-parachain export-genesis-state --chain ./resources/shell-local-raw.json > ./resources/shell-local-head-data
-# ./bin/polkadot-parachain export-genesis-wasm --chain ./resources/shell-local-raw.json > ./resources/shell-local-code
+# ./bin/mythical-node export-genesis-state --chain ./resources/mythical-shell-local-raw.json > ./resources/mythical-shell-local-head-data
+# ./bin/mythical-node export-genesis-wasm --chain ./resources/mythical-shell-local-raw.json > ./resources/mythical-shell-local-code
 
 # # RUST_LOG=runtime=debug,aura=debug,cumulus=debug,cumulus-collator=debug,nacho=debug
 # # export RUST_LOG
