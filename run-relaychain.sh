@@ -6,15 +6,6 @@
 
 echo "Relaychain start up"
 
-# ./bin/polkadot build-spec\
-#   --disable-default-bootnode\
-#   --chain=rococo-local > ./resources/rococo-relay-local.json
-
-# ./bin/polkadot build-spec\
-#   --chain ./resources/rococo-relay-local.json\
-#   --raw\
-#   --disable-default-bootnode > ./resources/rococo-relay-local-raw.json
-
 # RUST_LOG=runtime=trace,runtime::bridge=trace,runtime::bridge-messages=trace
 RUST_LOG=system=debug,paras=debug,nacho=debug,parachain::candidate-validation=debug,parachain::availability,runtime::inclusion,parachain::collation-generation=trace,parachain::candidate-backing=trace,parachain::bitfield-signing=trace,parachain::approval-voting=trace,parachain::availability-recovery=trace,parachain::availability-distribution=trace
 export RUST_LOG
