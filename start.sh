@@ -7,3 +7,5 @@
 ./run-seedling.sh
 
 ./run-parachain.sh
+
+# TODO: To be updated 
